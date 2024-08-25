@@ -11,6 +11,9 @@ export const decksApi = {
   getDecks() {
     return instance.get<ResponseType>('/v2/decks')
   },
+  createDeck(name: string) {
+    return instance.post<ItemType>('/v1/decks', { name })
+  },
 }
 
 export type ResponseType = {
@@ -33,6 +36,17 @@ export type PaginationType = {
 export type ItemType = {
   isFavorite: true
   author: AuthorType
+  id: string
+  userId: string
+  name: string
+  isPrivate: true
+  cover: string
+  created: string
+  updated: string
+  cardsCount: number
+}
+
+export type PostResponseType = {
   id: string
   userId: string
   name: string
