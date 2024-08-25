@@ -4,18 +4,14 @@ import { decksApi } from '../decks-api'
 import { useAppSelector, useAppDispatch } from '../../../app/store'
 import { setDecksAC } from '../decks-reducer'
 import { DeckItem } from './DeckItem/DeckItem'
+import { selectDecks } from '../decks-selectors'
+import { fetchDecksTC } from '../decks-thunks'
 
 export const DecksList = () => {
-  const decks = useAppSelector(state => state.decksReducer.decks)
+  const decks = useAppSelector(selectDecks)
   const dispatch = useAppDispatch()
   useEffect(() => {
-    decksApi.getDecks()
-      .then(res => {
-        dispatch(setDecksAC(res.data.items))
-      })
-      .catch((error) => {
-        console.error(error);
-      })
+    dispatch(fetchDecksTC)
   })
 
   const decksUI = decks.map((d) => {
