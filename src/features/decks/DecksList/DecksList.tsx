@@ -8,11 +8,11 @@ import { selectDecks } from '../decks-selectors'
 import { fetchDecksTC } from '../decks-thunks'
 
 export const DecksList = () => {
-  const decks = useAppSelector(selectDecks)
   const dispatch = useAppDispatch()
+  const decks = useAppSelector(selectDecks)
   useEffect(() => {
     dispatch(fetchDecksTC)
-  })
+  }, [dispatch])
 
   const decksUI = decks.map((d) => {
     return <DeckItem key={d.id} deck={d} />
