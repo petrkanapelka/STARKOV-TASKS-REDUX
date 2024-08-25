@@ -1,4 +1,5 @@
-import { ItemType } from './decks-api'
+import { Dispatch } from 'redux'
+import { decksApi, ItemType } from './decks-api'
 
 const initialState = {
   decks: [] as ItemType[], // todo: add type
@@ -24,3 +25,4 @@ type DecksActions = ReturnType<typeof setDecksAC>
 export const setDecksAC = (decks: ItemType[]) => {
   return { type: 'SET-DECKS', decks } as const
 }
+
